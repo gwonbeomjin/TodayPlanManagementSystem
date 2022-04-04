@@ -44,3 +44,4 @@ public class MenuManager {
 
 	
 }
+//Menu출력에 관련한 것들만 있도록 수정했습니다.
