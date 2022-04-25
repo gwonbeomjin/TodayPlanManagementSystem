@@ -31,17 +31,11 @@ public class MenuManager {
 				planManager.editPlan();
 				break;
 			case 4:
-				planManager.viewPlan();
+				planManager.viewPlans();
 				break;
 			case 5:
 				continue;
-			 
 			}
-
 		}
-
 	}
-
-	
 }
-//Menu출력에 관련한 것들만 있도록 수정했습니다.

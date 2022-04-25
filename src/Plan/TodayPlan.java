@@ -1,15 +1,14 @@
-package git_TodayPlanManagementSystem;
+package Plan;
 
 import java.util.Scanner;
 
 public class TodayPlan {
-
-	int plannum;
-	String planname;
-	String starttime;
-	String finishtime;
-	String contents;
-
+	protected PlanKind kind = PlanKind.Study;
+	protected int plannum;
+	protected String planname;
+	protected String starttime;
+	protected String finishtime;
+	protected String contents;
 	
 	public TodayPlan() {
 	}
@@ -27,44 +26,46 @@ public class TodayPlan {
 		this.contents = contents;
 	}
 	
-	void printInfo() {
-		System.out.println("Num : " + plannum + "/Start Time : " + starttime + "/Finish Time : " + finishtime + "/Plan Name : " + planname + "/Contents : " + contents);
+	public PlanKind getKind() {
+		return kind;
 	}
-	
-	public int getnum() {
+
+	public void setKind(PlanKind kind) {
+		this.kind = kind;
+	}
+
+	public int getPlannum() {
 		return plannum;
 	}
-	//getnum method는 다른 클래스에서도 plannum을 이용할 수 있도록 합니다.
-	
-	public void setnum(int plannum) {
+
+	public void setPlannum(int plannum) {
 		this.plannum = plannum;
 	}
-	//setnum method는 다른 클래스에서 변수의 값을 바꿀 수 있습니다.
 
-	public String getname() {
+	public String getPlanname() {
 		return planname;
 	}
 
-	public void setname(String planname) {
+	public void setPlanname(String planname) {
 		this.planname = planname;
 	}
 
-	public String getstart() {
+	public String getStarttime() {
 		return starttime;
 	}
 
-	public void setStart(String starttime) {
+	public void setStarttime(String starttime) {
 		this.starttime = starttime;
 	}
 
-	public String getFinish() {
+	public String getFinishtime() {
 		return finishtime;
 	}
 
-	public void setFinish(String finishtime) {
+	public void setFinishtime(String finishtime) {
 		this.finishtime = finishtime;
 	}
-	
+
 	public String getContents() {
 		return contents;
 	}
@@ -72,29 +73,33 @@ public class TodayPlan {
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
+	//생성자의 각각의 field에 대하여 getter, setter를 설정하였습니다. 
 	
-	void addin(Scanner input) {
+	public void printInfo() {
+		System.out.println("Num : " + plannum + "/Start Time : " + starttime + "/Finish Time : " + finishtime + "/Plan Name : " + planname + "/Contents : " + contents);
+	}
+	
+	public void getUserInput(Scanner input) {
 		System.out.print("Plan Number : ");
 		int plannum = input.nextInt();
-		this.setnum(plannum);
+		this.setPlannum(plannum);
 		
 		System.out.print("Plan Name : ");
 		String planname = input.next();
-		this.setname(planname);
+		this.setPlanname(planname);
 		
 		System.out.print("Start time : "); 
 		String starttime = input.next();
-		this.setStart(starttime);
+		this.setStarttime(starttime);
 		
 		System.out.print("finish time : ");
 		String finishtime = input.next();
-		this.setFinish(finishtime);
+		this.setFinishtime(finishtime);
 		
 		System.out.print("Contents : ");
 		String contents = input.next();
 		this.setContents(contents);
 	}
-	//addin method는 사용자가 직접 입력하여 객체의 값을 각각 입력받고 저장합니다.
-	//원래 PlanManager의 addPlan method를 TodayPlan Class로 옮겨왔습니다.
+	//getUserInput method를 생성하여 사용자가 입력한 값을 저장하도록 하였습니다.
 	
 }
