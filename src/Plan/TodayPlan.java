@@ -10,15 +10,55 @@ public class TodayPlan {
 	protected String finishtime;
 	protected String contents;
 	
+	//파라미터 0개.
 	public TodayPlan() {
 	}
 	
+	//파라미터 1개.
+	public TodayPlan(PlanKind kind) {
+		this.kind = kind;
+	}
+	public TodayPlan(int plannum) {
+		this.plannum = plannum;
+	}
+	public TodayPlan(String planname) {
+		this.planname = planname;
+	}
+
+	//파라미터 2개.
 	public TodayPlan(int plannum, String planname) {
 		this.plannum = plannum;
 		this.planname = planname;
 	}
 	
+	//파라미터 3개.
+	public TodayPlan(PlanKind kind, int plannum, String planname) {
+		this.kind = kind;
+		this.plannum = plannum;
+		this.planname = planname;
+	}
+
+	
+	//파라미터 4개
+	public TodayPlan(PlanKind kind, int plannum, String planname, String starttime) {
+		this.kind = kind;
+		this.plannum = plannum;
+		this.planname = planname;
+		this.starttime = starttime;
+	}
+	
+	//파라미터 5개.
 	public TodayPlan(int plannum, String planname, String starttime, String finishtime, String contents) {
+		this.plannum = plannum;
+		this.planname = planname;
+		this.starttime = starttime;
+		this.finishtime = finishtime;
+		this.contents = contents;
+	}
+	
+	//파라미터 6개.
+	public TodayPlan(PlanKind kind, int plannum, String planname, String starttime, String finishtime, String contents) {
+		this.kind = kind;
 		this.plannum = plannum;
 		this.planname = planname;
 		this.starttime = starttime;
@@ -75,8 +115,26 @@ public class TodayPlan {
 	}
 	//생성자의 각각의 field에 대하여 getter, setter를 설정하였습니다. 
 	
+	
 	public void printInfo() {
-		System.out.println("Num : " + plannum + "/Start Time : " + starttime + "/Finish Time : " + finishtime + "/Plan Name : " + planname + "/Contents : " + contents);
+		String skind = "none";
+		switch(this.kind) {
+		case Study:
+			skind = "Study";
+			break;
+		case Assignment:
+			skind = "Assignment";
+			break;
+		case Exercise:
+			skind = "Exercise";
+			break;
+		case Appointment:
+			skind = "Appointment";
+			break;
+		default:
+			
+		}
+		System.out.println("Kind : " + skind + "Num : " + plannum + "/Start Time : " + starttime + "/Finish Time : " + finishtime + "/Plan Name : " + planname + "/Contents : " + contents);
 	}
 	
 	public void getUserInput(Scanner input) {
@@ -100,6 +158,7 @@ public class TodayPlan {
 		String contents = input.next();
 		this.setContents(contents);
 	}
-	//getUserInput method를 생성하여 사용자가 입력한 값을 저장하도록 하였습니다.
 	
+	
+
 }

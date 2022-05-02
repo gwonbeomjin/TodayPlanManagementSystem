@@ -150,5 +150,9 @@ public class PlanManager {
 			 todayplans.get(i).printInfo();
 		}
 	}
+	
+	public void viewDate() {
+		
+	}
 }
 
