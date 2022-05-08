@@ -6,12 +6,14 @@ import java.util.Scanner;
 import Plan.Appointment;
 import Plan.Assignment;
 import Plan.Exercise;
+import Plan.PlanInput;
+import Plan.PlanKind;
 import Plan.Study;
 import Plan.TodayPlan;
 
 public class PlanManager {
-	ArrayList<TodayPlan> todayplans = new ArrayList<TodayPlan>();
-	//todayplans객체는 ArrayList형태로 선언하였습니다.
+	ArrayList<PlanInput> todayplans = new ArrayList<PlanInput>();
+	//PlanInput interface의 결과를 ArrayList에 저장하기 위해서 수정하였습니다.
 	Scanner input;
 	
 	PlanManager(Scanner input) {
@@ -20,7 +22,8 @@ public class PlanManager {
 	
 	public void addPlan() {
 		int kind = 0;
-		TodayPlan todayplan;
+		PlanInput planInput;
+		//PlanInput interface
 		while (kind != 1 && kind != 2 && kind != 3 && kind != 4) {
 			System.out.println("1. Study");
 			System.out.println("2. Assignment");
@@ -29,30 +32,31 @@ public class PlanManager {
 			System.out.println("Select num for Plan Kind : ");
 			kind = input.nextInt();
 			if (kind == 1) {
-				todayplan = new Study();
-				todayplan.getUserInput(input);
-				todayplans.add(todayplan);
+				planInput = new Study(PlanKind.Study);
+				//PlanInput
+				planInput.getUserInput(input);
+				todayplans.add(planInput);
 				break;
 			}
 			//1을 입력하면 Study클래스타입의 Plan을 설정할 수 있습니다.
 			else if (kind == 2) {
-				todayplan = new Assignment();
-				todayplan.getUserInput(input);
-				todayplans.add(todayplan);
+				planInput = new Assignment(PlanKind.Assignment);
+				planInput.getUserInput(input);
+				todayplans.add(planInput);
 				break;
 			}
 			//2를 입력하면 Assignment클래스타입의 Plan을 설정할 수 있습니다.
 			else if (kind == 3) {
-				todayplan = new Exercise();
-				todayplan.getUserInput(input);
-				todayplans.add(todayplan);
+				planInput = new Exercise(PlanKind.Exercise);
+				planInput.getUserInput(input);
+				todayplans.add(planInput);
 				break;
 			}
 			//3을 입력하면 Exercise클래스타입의 Plan을 설정할 수 있습니다.
 			else if (kind == 4) {
-				todayplan = new Appointment();
-				todayplan.getUserInput(input);
-				todayplans.add(todayplan);
+				planInput = new Appointment(PlanKind.Appointment);
+				planInput.getUserInput(input);
+				todayplans.add(planInput);
 				break;
 			}
 			//4를 입력하면 Appointment클래스타입의 Plan을 설정할 수 있습니다.
@@ -89,8 +93,9 @@ public class PlanManager {
 		System.out.print("Plan Number : ");
 		int PlanNum = input.nextInt();
 		for (int i = 0; i < todayplans.size(); i++) {
-			TodayPlan todayplan = todayplans.get(i);
-			if (todayplan.getPlannum() == PlanNum) {
+			PlanInput planInput = todayplans.get(i);
+			//PlanInput interface
+			if (planInput.getPlannum() == PlanNum) {
 				int num = -1;
 				while (num != 5) {	
 					System.out.println("1. Edit Plan Number");
@@ -106,31 +111,31 @@ public class PlanManager {
 					case 1:
 						System.out.print("Plan Number : ");
 						int plannum = input.nextInt();
-						todayplan.setPlannum(plannum);
+						planInput.setPlannum(plannum);
 						//
 						break;
 					case 2:
 						System.out.print("Plan Name : ");
 						String planname = input.next();
-						todayplan.setPlanname(planname);
+						planInput.setPlanname(planname);
 						//
 						break;
 					case 3:
 						System.out.print("Start Time : ");
 						String starttime = input.next();
-						todayplan.setStarttime(starttime);
+						planInput.setStarttime(starttime);
 						//
 						break;
 					case 4:
 						System.out.print("Finish Time : ");
 						String finishtime = input.next();
-						todayplan.setFinishtime(finishtime);
+						planInput.setFinishtime(finishtime);
 						break;
 						//
 					case 5:
 						System.out.print("Contents : ");
 						String contents = input.next();
-						todayplan.setContents(contents);
+						planInput.setContents(contents);
 						//
 						break;
 					case 6:
@@ -151,8 +156,5 @@ public class PlanManager {
 		}
 	}
 	
-	public void viewDate() {
-		
-	}
 }
 

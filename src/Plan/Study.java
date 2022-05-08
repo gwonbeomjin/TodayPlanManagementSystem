@@ -2,19 +2,23 @@ package Plan;
 
 import java.util.Scanner;
 
-public class Study extends TodayPlan {
+public class Study extends TodayPlan implements PlanInput{
+	//planInput Interface의 method를 Study클래스에서 구현하도록 선언하였습니다.
+	
+	public Study(PlanKind kind) {
+		super(kind);
+	}
 	
 	protected int page;
-	//page라는 새로운 field를 생성하였습니다
 	public int getPage() {
 		return page;
 	}
 	public void setPage(int page) {
 		this.page = page;
 	}
-	//page에 대한 get,set method를 생성하였습니다.
 	
 	public void getUserInput(Scanner input) {
+		//Study 클래스에 맞게 getUserInput method를 구현하였습니다.
 		System.out.print("Plan Number : ");
 		int plannum = input.nextInt();
 		this.setPlannum(plannum);
@@ -40,14 +44,12 @@ public class Study extends TodayPlan {
 				this.setContents("Dormitory");
 				break;
 			}
-			//Y를 입력받으면 Contents가 Dormitory가 됩니다.
 			else if (answer == 'n' || answer == 'N') {
 				System.out.print("Study Place : ");
 				String contents = input.next();
 				this.setContents(contents);
 				break;
 			}
-			//N을 입력받으면 직접 장소를 입력받습니다.
 			else {
 				
 			}
@@ -56,12 +58,26 @@ public class Study extends TodayPlan {
 		System.out.print("What page do you study first?"); 
 		int page = input.nextInt();
 		this.setPage(page);
-		//study클래스에서 추가적으로 몇쪽부터 공부할 것인지 입력받도록 하였습니다.
-
 		
 	}
 	public void printInfo() {
-		System.out.println("Kind : " + PlanKind.Study + "/Num : " + plannum + "/Start Time : " + starttime + "/Finish Time : " + finishtime + "/Plan Name : " + planname + "/Contents : " + contents + "/page : " + page + "p");
+		String skind = "none";
+		switch(this.kind) {
+		case Study:
+			skind = "Study";
+			break;
+		case Assignment:
+			skind = "Assignment";
+			break;
+		case Exercise:
+			skind = "Exercise";
+			break;
+		case Appointment:
+			skind = "Appointment";
+			break;
+		default:
+		}
+		System.out.println("Kind : " + skind + "/Num : " + plannum + "/Start Time : " + starttime + "/Finish Time : " + finishtime + "/Plan Name : " + planname + "/Contents : " + contents + "/page : " + page + "p");
 	}
-	//study 클래스의 printInfo() method는 method overriding 되어 추가적으로 몇 페이지까지 공부할 것인지 나타낼 것입니다.
+	//study 클래스에서 구현된 printInfo() method입니다.
 }

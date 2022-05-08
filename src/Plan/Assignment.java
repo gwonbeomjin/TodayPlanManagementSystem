@@ -2,19 +2,24 @@ package Plan;
 
 import java.util.Scanner;
 
-public class Assignment extends TodayPlan {
+public class Assignment extends TodayPlan implements PlanInput{
+	//planInput Interface의 method를 Assignment클래스에서 구현하도록 선언하였습니다.
+	
 	protected int problem;
-	//Assignment 클래스에서 problem이라는 새로운 field를 만들었습니다.
+	
 	public int getProblem() {
 		return problem;
 	}
 	public void setProblem(int problem) {
 		this.problem = problem;
 	}
-	//problem에 대한 get, set method를 만들었습니다.
+	
+	public Assignment(PlanKind kind) {
+		super(kind);
+	}
 
 	public void getUserInput(Scanner input) {
-		
+		//PlanInput interface의 getUserInput을 Assignment 클래스에 맞게 구현하였습니다.
 		System.out.print("Plan Number : ");
 		int plannum = input.nextInt();
 		this.setPlannum(plannum);
@@ -35,7 +40,6 @@ public class Assignment extends TodayPlan {
 				this.setFinishtime("11:59");
 				break;
 			}
-			//과제 기한이 오늘까지 인지 물어보고 Yes일 경우 finishtime이 11:59로 설정되도록 합니다.
 			else if (answer == 'n' || answer == 'N') {
 				this.setFinishtime("");
 				break;

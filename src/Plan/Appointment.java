@@ -2,8 +2,15 @@ package Plan;
 
 import java.util.Scanner;
 
-public class Appointment extends TodayPlan {
+public class Appointment extends TodayPlan implements PlanInput{
+	//planInput Interface의 method를 Appointment클래스에서 구현하도록 선언하였습니다.
+	
+	public Appointment(PlanKind kind) {
+		super(kind);
+	}
+	
 	public void getUserInput(Scanner input) {
+		//PlanInput의 getUserInput을 Appointment클래스에 맞게 구현하였습니다.
 		System.out.print("Plan Number : ");
 		int plannum = input.nextInt();
 		this.setPlannum(plannum);
@@ -42,4 +49,25 @@ public class Appointment extends TodayPlan {
 			}
 		}
 	}
+	public void printInfo() {
+		String skind = "none";
+		switch(this.kind) {
+		case Study:
+			skind = "Study";
+			break;
+		case Assignment:
+			skind = "Assignment";
+			break;
+		case Exercise:
+			skind = "Exercise";
+			break;
+		case Appointment:
+			skind = "Appointment";
+			break;
+		default:
+		}
+		System.out.println("Kind : " + skind + "/Num : " + plannum + "/Start Time : " + starttime + "/Finish Time : " + finishtime + "/Plan Name : " + planname + "/Contents : " + contents);
+	}
+	//abstract method인 printInfo() method를 구현하였습니다.
+	
 }

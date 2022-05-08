@@ -2,7 +2,8 @@ package Plan;
 
 import java.util.Scanner;
 
-public class Exercise extends TodayPlan {
+public class Exercise extends TodayPlan implements PlanInput{
+	//PlanInput interface의 method를 구현하도록 선언합니다.
 	
 	protected String date;
 	public String getDate() {
@@ -11,6 +12,10 @@ public class Exercise extends TodayPlan {
 
 	public void setDate(String date) {
 		this.date = date;
+	}
+	
+	public Exercise(PlanKind kind) {
+		super(kind);
 	}
 
 	public void getUserInput(Scanner input) {
@@ -67,6 +72,23 @@ public class Exercise extends TodayPlan {
 	}
 	
 	public void printInfo() {
-		System.out.println("Kind : " + PlanKind.Study + "/Num : " + plannum + "Today : " + date + "/Start Time : " + starttime + "/Finish Time : " + finishtime + "/Plan Name : " + planname + "/Contents : " + contents);
+		String skind = "none";
+		switch(this.kind) {
+		case Study:
+			skind = "Study";
+			break;
+		case Assignment:
+			skind = "Assignment";
+			break;
+		case Exercise:
+			skind = "Exercise";
+			break;
+		case Appointment:
+			skind = "Appointment";
+			break;
+		default:
+		}
+		System.out.println("Kind : " + skind + "/Num : " + plannum + "Today : " + date + "/Start Time : " + starttime + "/Finish Time : " + finishtime + "/Plan Name : " + planname + "/Contents : " + contents);
 	}
+	//Exercise 클래스에서 구현된 printInfo() method입니다.
 }

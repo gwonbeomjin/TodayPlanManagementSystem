@@ -2,7 +2,8 @@ package Plan;
 
 import java.util.Scanner;
 
-public class TodayPlan {
+public abstract class TodayPlan {
+	//부모클래스인 TodayPlan을 abstract class로 선언하였습니다.
 	protected PlanKind kind = PlanKind.Study;
 	protected int plannum;
 	protected String planname;
@@ -10,11 +11,9 @@ public class TodayPlan {
 	protected String finishtime;
 	protected String contents;
 	
-	//파라미터 0개.
 	public TodayPlan() {
 	}
 	
-	//파라미터 1개.
 	public TodayPlan(PlanKind kind) {
 		this.kind = kind;
 	}
@@ -25,21 +24,17 @@ public class TodayPlan {
 		this.planname = planname;
 	}
 
-	//파라미터 2개.
 	public TodayPlan(int plannum, String planname) {
 		this.plannum = plannum;
 		this.planname = planname;
 	}
 	
-	//파라미터 3개.
 	public TodayPlan(PlanKind kind, int plannum, String planname) {
 		this.kind = kind;
 		this.plannum = plannum;
 		this.planname = planname;
 	}
 
-	
-	//파라미터 4개
 	public TodayPlan(PlanKind kind, int plannum, String planname, String starttime) {
 		this.kind = kind;
 		this.plannum = plannum;
@@ -47,7 +42,6 @@ public class TodayPlan {
 		this.starttime = starttime;
 	}
 	
-	//파라미터 5개.
 	public TodayPlan(int plannum, String planname, String starttime, String finishtime, String contents) {
 		this.plannum = plannum;
 		this.planname = planname;
@@ -56,7 +50,6 @@ public class TodayPlan {
 		this.contents = contents;
 	}
 	
-	//파라미터 6개.
 	public TodayPlan(PlanKind kind, int plannum, String planname, String starttime, String finishtime, String contents) {
 		this.kind = kind;
 		this.plannum = plannum;
@@ -112,53 +105,9 @@ public class TodayPlan {
 
 	public void setContents(String contents) {
 		this.contents = contents;
-	}
-	//생성자의 각각의 field에 대하여 getter, setter를 설정하였습니다. 
+	} 
 	
-	
-	public void printInfo() {
-		String skind = "none";
-		switch(this.kind) {
-		case Study:
-			skind = "Study";
-			break;
-		case Assignment:
-			skind = "Assignment";
-			break;
-		case Exercise:
-			skind = "Exercise";
-			break;
-		case Appointment:
-			skind = "Appointment";
-			break;
-		default:
-			
-		}
-		System.out.println("Kind : " + skind + "Num : " + plannum + "/Start Time : " + starttime + "/Finish Time : " + finishtime + "/Plan Name : " + planname + "/Contents : " + contents);
-	}
-	
-	public void getUserInput(Scanner input) {
-		System.out.print("Plan Number : ");
-		int plannum = input.nextInt();
-		this.setPlannum(plannum);
-		
-		System.out.print("Plan Name : ");
-		String planname = input.next();
-		this.setPlanname(planname);
-		
-		System.out.print("Start time : "); 
-		String starttime = input.next();
-		this.setStarttime(starttime);
-		
-		System.out.print("finish time : ");
-		String finishtime = input.next();
-		this.setFinishtime(finishtime);
-		
-		System.out.print("Contents : ");
-		String contents = input.next();
-		this.setContents(contents);
-	}
-	
-	
+	public abstract void printInfo();
+	//printInfo를 abstract method로 설정하여, 자식클래스에서 구현하도록 하였습니다.
 
 }
