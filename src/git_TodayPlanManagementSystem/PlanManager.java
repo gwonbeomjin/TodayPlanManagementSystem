@@ -1,6 +1,7 @@
 package git_TodayPlanManagementSystem;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import Plan.Appointment;
@@ -25,6 +26,7 @@ public class PlanManager {
 		PlanInput planInput;
 		//PlanInput interface
 		while (kind != 1 && kind != 2 && kind != 3 && kind != 4) {
+			try { //try문 시작.
 			System.out.println("1. Study");
 			System.out.println("2. Assignment");
 			System.out.println("3. Exercise");
@@ -33,26 +35,22 @@ public class PlanManager {
 			kind = input.nextInt();
 			if (kind == 1) {
 				planInput = new Study(PlanKind.Study);
-				//PlanInput
 				planInput.getUserInput(input);
 				todayplans.add(planInput);
 				break;
 			}
-			//1을 입력하면 Study클래스타입의 Plan을 설정할 수 있습니다.
 			else if (kind == 2) {
 				planInput = new Assignment(PlanKind.Assignment);
 				planInput.getUserInput(input);
 				todayplans.add(planInput);
 				break;
 			}
-			//2를 입력하면 Assignment클래스타입의 Plan을 설정할 수 있습니다.
 			else if (kind == 3) {
 				planInput = new Exercise(PlanKind.Exercise);
 				planInput.getUserInput(input);
 				todayplans.add(planInput);
 				break;
 			}
-			//3을 입력하면 Exercise클래스타입의 Plan을 설정할 수 있습니다.
 			else if (kind == 4) {
 				planInput = new Appointment(PlanKind.Appointment);
 				planInput.getUserInput(input);
@@ -63,15 +61,38 @@ public class PlanManager {
 			else {
 				System.out.print("Select num for Plan Kind : ");
 			}
+			} //try문 종료.
+			catch (InputMismatchException e) {
+				System.out.println("You must input integer between 1 and 4! ");
+				if (input.hasNext()) {
+					input.next();
+				}
+				kind = -1;
+			} //try 안의 문장 실행과정에서 kind값을 잘못 입력받은경우 catch문의 코드가 실행됩니다.
 		}
 		
 	}
-	//arrayList에 맞게 입력받은 값들은 todayplan이라는 array에
-	//addPlan의 Method는 TodayPlan Class의 addin Method를 호출하여 값을 입력받도록 했습니다.
 	
 	public void deletePlan() {
 		System.out.print("Plan Number : ");
 		int planNum = input.nextInt();
+		int index = findIndex(planNum);
+		removePlan(index, planNum);
+	}
+	
+	public int removePlan(int index, int planNum) {
+		if(index >= 0) {
+			todayplans.remove(index);
+			System.out.println("the plan " + planNum + "is deleted successfully.");
+			return 1;
+		}
+		else {
+			System.out.println("the Plan has not been registered");
+			return -1;
+		}
+	}
+	
+	public int findIndex(int planNum) {
 		int index = -1;
 		for(int i = 0; i < todayplans.size(); i++) {
 			if (todayplans.get(i).getPlannum() == planNum) {
@@ -79,66 +100,37 @@ public class PlanManager {
 				break;
 			}
 		}
-		if(index >= 0) {
-			todayplans.remove(index);
-			System.out.println("the plan " + planNum + "is deleted successfully.");
-		}
-		else {
-			System.out.println("the Plan has not been registered");
-			return;
-		}
-	}
+		return index;
+	} 
 
 	public void editPlan() {
 		System.out.print("Plan Number : ");
 		int PlanNum = input.nextInt();
 		for (int i = 0; i < todayplans.size(); i++) {
-			PlanInput planInput = todayplans.get(i);
-			//PlanInput interface
-			if (planInput.getPlannum() == PlanNum) {
+			PlanInput plan1 = todayplans.get(i);
+			if (plan1.getPlannum() == PlanNum) {
 				int num = -1;
 				while (num != 5) {	
-					System.out.println("1. Edit Plan Number");
-					System.out.println("2. Edit Plan Name");
-					System.out.println("3. Edit Start Time");
-					System.out.println("4. Edit Finish Time");
-					System.out.println("5. Edit Contents");
-					System.out.println("6. Exit");
-					System.out.println("Select one number 1-6");
+					showEditMenu();
 					num = input.nextInt();
 					
-					switch(num) {
+					switch(num) { //method화를 통해 간략하게 하였습니다.
 					case 1:
-						System.out.print("Plan Number : ");
-						int plannum = input.nextInt();
-						planInput.setPlannum(plannum);
-						//
+						plan1.setPlanNum(input); 
 						break;
 					case 2:
-						System.out.print("Plan Name : ");
-						String planname = input.next();
-						planInput.setPlanname(planname);
-						//
+						plan1.setPlanName(input);
 						break;
 					case 3:
-						System.out.print("Start Time : ");
-						String starttime = input.next();
-						planInput.setStarttime(starttime);
-						//
+						plan1.setPlanName(input);
 						break;
 					case 4:
-						System.out.print("Finish Time : ");
-						String finishtime = input.next();
-						planInput.setFinishtime(finishtime);
+						plan1.setFinishTime(input);
 						break;
-						//
 					case 5:
-						System.out.print("Contents : ");
-						String contents = input.next();
-						planInput.setContents(contents);
-						//
+						plan1.setContents(input);
 						break;
-					case 6:
+					default:
 						continue;
 					}//switch
 					break;
@@ -154,6 +146,18 @@ public class PlanManager {
 		for (int i = 0; i < todayplans.size(); i++) {
 			 todayplans.get(i).printInfo();
 		}
+	}
+	
+
+	
+	public void showEditMenu() {
+		System.out.println("1. Edit Plan Number");
+		System.out.println("2. Edit Plan Name");
+		System.out.println("3. Edit Start Time");
+		System.out.println("4. Edit Finish Time");
+		System.out.println("5. Edit Contents");
+		System.out.println("6. Exit");
+		System.out.println("Select one number 1-6");
 	}
 	
 }

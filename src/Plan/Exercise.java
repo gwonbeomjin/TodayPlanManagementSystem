@@ -2,8 +2,7 @@ package Plan;
 
 import java.util.Scanner;
 
-public class Exercise extends TodayPlan implements PlanInput{
-	//PlanInput interface의 method를 구현하도록 선언합니다.
+public class Exercise extends TodayPlan{
 	
 	protected String date;
 	public String getDate() {
@@ -22,31 +21,18 @@ public class Exercise extends TodayPlan implements PlanInput{
 		System.out.print("Today is : ");
 		today(input);
 		
-		today();
-		System.out.print("Plan Number : ");
-		int plannum = input.nextInt();
-		this.setPlannum(plannum);
-		
-		System.out.print("Plan Name : ");
-		String planname = input.next();
-		this.setPlanname(planname);
-		
-		System.out.print("Start time : "); 
-		String starttime = input.next();
-		this.setStarttime(starttime);
-		
-		System.out.print("finish time : ");
-		String finishtime = input.next();
-		this.setFinishtime(finishtime);
+		setPlanNum(input);
+		setPlanName(input);
+		setStartTime(input);
+		setFinishTime(input);
+		//입력받는 부분을 부모클래스인 TodayPlan으로 옮겨 간략화 시켰습니다. 
 		
 		char answer = 'x';
 		while (answer != 'y' && answer != 'Y' && answer != 'n' && answer != 'N') {
 			System.out.print("Do you have detail Part? (Y/N)");
 			answer = input.next().charAt(0);
 			if(answer == 'y' || answer == 'Y') {
-				System.out.print("Today's workout part : ");
-				String contents = input.next();
-				this.setContents(contents);
+				setContents(input);
 				break;
 			}
 			//exercise 클래스에서 contents부분을 세부적인 운동부분 유무를 물어보고
@@ -56,9 +42,7 @@ public class Exercise extends TodayPlan implements PlanInput{
 				break;
 			}
 			else {
-				
 			}
-		
 		}
 	}
 	
@@ -72,23 +56,9 @@ public class Exercise extends TodayPlan implements PlanInput{
 	}
 	
 	public void printInfo() {
-		String skind = "none";
-		switch(this.kind) {
-		case Study:
-			skind = "Study";
-			break;
-		case Assignment:
-			skind = "Assignment";
-			break;
-		case Exercise:
-			skind = "Exercise";
-			break;
-		case Appointment:
-			skind = "Appointment";
-			break;
-		default:
-		}
+		String skind = getKindStr();
 		System.out.println("Kind : " + skind + "/Num : " + plannum + "Today : " + date + "/Start Time : " + starttime + "/Finish Time : " + finishtime + "/Plan Name : " + planname + "/Contents : " + contents);
 	}
 	//Exercise 클래스에서 구현된 printInfo() method입니다.
+	
 }
