@@ -1,5 +1,7 @@
 package git_TodayPlanManagementSystem;
 
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -10,12 +12,15 @@ import Plan.Exercise;
 import Plan.PlanInput;
 import Plan.PlanKind;
 import Plan.Study;
-import Plan.TodayPlan;
 
-public class PlanManager {
+public class PlanManager implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8218875799086054756L;
 	ArrayList<PlanInput> todayplans = new ArrayList<PlanInput>();
-	//PlanInput interface의 결과를 ArrayList에 저장하기 위해서 수정하였습니다.
-	Scanner input;
+	
+	transient Scanner input;
 	
 	PlanManager(Scanner input) {
 		this.input = input;
@@ -159,6 +164,8 @@ public class PlanManager {
 		System.out.println("6. Exit");
 		System.out.println("Select one number 1-6");
 	}
+	
+
 	
 }
 

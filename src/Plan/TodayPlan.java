@@ -1,10 +1,15 @@
 package Plan;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 import Exception.TimeFormatException;
 
-public abstract class TodayPlan implements PlanInput{
+public abstract class TodayPlan implements PlanInput, Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5213170210190589959L;
 	//부모클래스에 PlanInput을 구현함으로써 공통적인 요소는 자식클래스에서 구현하지 않아도 됩니다.
 	protected PlanKind kind = PlanKind.Study;
 	protected int plannum;
