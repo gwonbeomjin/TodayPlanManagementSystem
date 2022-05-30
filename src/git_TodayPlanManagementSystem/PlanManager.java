@@ -14,9 +14,7 @@ import Plan.PlanKind;
 import Plan.Study;
 
 public class PlanManager implements Serializable{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -8218875799086054756L;
 	ArrayList<PlanInput> todayplans = new ArrayList<PlanInput>();
 	
@@ -29,9 +27,8 @@ public class PlanManager implements Serializable{
 	public void addPlan() {
 		int kind = 0;
 		PlanInput planInput;
-		//PlanInput interface
 		while (kind != 1 && kind != 2 && kind != 3 && kind != 4) {
-			try { //try문 시작.
+			try { 
 			System.out.println("1. Study");
 			System.out.println("2. Assignment");
 			System.out.println("3. Exercise");
@@ -62,7 +59,6 @@ public class PlanManager implements Serializable{
 				todayplans.add(planInput);
 				break;
 			}
-			//4를 입력하면 Appointment클래스타입의 Plan을 설정할 수 있습니다.
 			else {
 				System.out.print("Select num for Plan Kind : ");
 			}
@@ -73,7 +69,7 @@ public class PlanManager implements Serializable{
 					input.next();
 				}
 				kind = -1;
-			} //try 안의 문장 실행과정에서 kind값을 잘못 입력받은경우 catch문의 코드가 실행됩니다.
+			}
 		}
 		
 	}
@@ -119,7 +115,7 @@ public class PlanManager implements Serializable{
 					showEditMenu();
 					num = input.nextInt();
 					
-					switch(num) { //method화를 통해 간략하게 하였습니다.
+					switch(num) {
 					case 1:
 						plan1.setPlanNum(input); 
 						break;
@@ -152,9 +148,7 @@ public class PlanManager implements Serializable{
 			 todayplans.get(i).printInfo();
 		}
 	}
-	
-
-	
+		
 	public void showEditMenu() {
 		System.out.println("1. Edit Plan Number");
 		System.out.println("2. Edit Plan Name");
@@ -164,8 +158,6 @@ public class PlanManager implements Serializable{
 		System.out.println("6. Exit");
 		System.out.println("Select one number 1-6");
 	}
-	
-
 	
 }
 

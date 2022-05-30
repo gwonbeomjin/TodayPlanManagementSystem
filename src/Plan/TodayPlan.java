@@ -6,11 +6,8 @@ import java.util.Scanner;
 import Exception.TimeFormatException;
 
 public abstract class TodayPlan implements PlanInput, Serializable{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -5213170210190589959L;
-	//부모클래스에 PlanInput을 구현함으로써 공통적인 요소는 자식클래스에서 구현하지 않아도 됩니다.
 	protected PlanKind kind = PlanKind.Study;
 	protected int plannum;
 	protected String planname;
@@ -97,7 +94,6 @@ public abstract class TodayPlan implements PlanInput, Serializable{
 	public void setStarttime(String starttime) throws TimeFormatException{
 		if (!starttime.contains(":") && !starttime.equals("")) {
 			throw new TimeFormatException();
-			//setStarttime method호출과정에서 TimeFormatException이 throw되도록 설정.
 		}
 		this.starttime = starttime;
 	}
@@ -109,7 +105,6 @@ public abstract class TodayPlan implements PlanInput, Serializable{
 	public void setFinishtime(String finishtime) throws TimeFormatException{
 		if (!finishtime.contains(":") && !finishtime.equals("")) {
 			throw new TimeFormatException();
-			//setFinishtime method호출과정에서 TimeFormatException이 throw되도록 설정.
 		}
 		this.finishtime = finishtime;
 	}
@@ -146,7 +141,7 @@ public abstract class TodayPlan implements PlanInput, Serializable{
 			} 
 			catch (TimeFormatException e) {
 				System.out.println("Incorrect Time Format. Please include ':'");
-			} //try catch문을 이용하여 ":"가 입력되지 않으면 위의 문장이 출력되고 다시 시간을 입력받도록 설정.
+			} 
 		}
 	}
 	
@@ -160,7 +155,7 @@ public abstract class TodayPlan implements PlanInput, Serializable{
 			} 
 			catch (TimeFormatException e) {
 				System.out.println("Incorrect Time Format. Please include ':'");
-			} //try catch문을 이용하여 ":"가 입력되지 않으면 위의 문장이 출력되고 다시 시간을 입력받도록 설정.
+			}
 		}
 	}
 	
@@ -170,7 +165,7 @@ public abstract class TodayPlan implements PlanInput, Serializable{
 		this.setContents(contents);
 	}
 	
-	public String getKindStr() { //getKindStr method로 분리하여 printInfo에 출력정보를 전달.
+	public String getKindStr() {
 		String skind = "none";
 		switch(this.kind) {
 		case Study:

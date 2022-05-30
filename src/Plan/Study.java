@@ -30,6 +30,5 @@ public class Study extends University{
 		 
 		setPlaceYN(input);
 		setPage(input);
-		//입력받는 부분을 부모클래스 University로 옮겨 간략히하였습니다.
 	}
 }

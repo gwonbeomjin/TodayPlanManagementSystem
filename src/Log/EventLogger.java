@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 public class EventLogger {
+	//PlanManagementSystem의 입력, 삭제, 수정, 출력과 같은 명령을 입력받은 시간을 표시하는 클래스이다.
 	FileHandler filehandler;
 
 	LogManager logmanager;

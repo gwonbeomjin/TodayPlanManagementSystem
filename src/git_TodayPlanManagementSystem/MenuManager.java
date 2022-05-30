@@ -15,8 +15,6 @@ public class MenuManager {
 	static EventLogger logger = new EventLogger("log.txt");
 
 	public static void main(String[] args) {
-		
-
 
 		Scanner input = new Scanner(System.in);
 		PlanManager planManager = getObject("planmanager.ser");
@@ -31,7 +29,7 @@ public class MenuManager {
 	public static void selectMenu(Scanner input, PlanManager planManager) {
 		int num = 0;
 		while (num != 5) {	
-			try { //try문 시작.
+			try { 
 				showMenu();
 				num = input.nextInt();
 				
@@ -55,14 +53,14 @@ public class MenuManager {
 				default:
 					continue;
 				}
-			} //try문 종료.
+			}
 			catch (InputMismatchException e) {
 				System.out.println("Please input integer between 1 and 4! ");
 				if (input.hasNext()) {
 					input.next();
 				}
 				num = -1;
-			} //try문에서 num값을 잘못 입력받는 경우 catch문의 문장이 실행됩니다.
+			} 
 
 		}
 	}
@@ -88,14 +86,13 @@ public class MenuManager {
 			in.close();
 			file.close();
 			
-			
 		} catch (FileNotFoundException e) {
 			return planManager;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		
@@ -111,7 +108,6 @@ public class MenuManager {
 			
 			out.close();
 			file.close();
-			
 			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block

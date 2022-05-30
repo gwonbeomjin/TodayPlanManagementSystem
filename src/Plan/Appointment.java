@@ -13,7 +13,6 @@ public class Appointment extends TodayPlan{
 		setPlanName(input);
 		setStartTime(input);
 		setFinishTime(input);
-		//입력받는 부분을 부모클래스인 TodayPlan으로 옮겨 간략화 시켰습니다. 
 		
 		char answer = 'x';
 		while (answer != 'y' && answer != 'Y' && answer != 'n' && answer != 'N') {
