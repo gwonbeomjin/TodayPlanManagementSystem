@@ -6,12 +6,20 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.logging.Logger;
 import Log.EventLogger;
+import gui.WindowFrame;
 
-public class MenuManager {
+public class MenuManager implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	transient Scanner input;
 	static EventLogger logger = new EventLogger("log.txt");
 
 	public static void main(String[] args) {
@@ -21,8 +29,13 @@ public class MenuManager {
 		if (planManager == null) {
 			planManager = new PlanManager(input);
 		}
-		selectMenu(input, planManager);
+		else {
+			planManager.input = input;
+		}
 		
+		WindowFrame frame = new WindowFrame(planManager);
+		//창을 연동하기 위하여 WindowFrame클래스의 객체 frame을 만들었습니다.
+		selectMenu(input, planManager);
 		putObject(planManager, "planmanager.ser");
 	}
 	
@@ -61,7 +74,6 @@ public class MenuManager {
 				}
 				num = -1;
 			} 
-
 		}
 	}
 	

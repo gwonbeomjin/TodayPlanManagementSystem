@@ -7,11 +7,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class MenuSelection extends JFrame{
-	public MenuSelection() {
-		this.setSize(300, 300); //창 크기를 설정하였습니다.
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
-		//창을 닫으면 프로그램이 종료되도록 합니다.
+import listeners.ButtonAddListener;
+import listeners.ButtonViewListener;
+
+public class MenuSelection extends JPanel{
+	
+	WindowFrame frame;
+	
+	public MenuSelection(WindowFrame frame) {
+		this.frame = frame;
+		
+		this.setLayout(new BorderLayout());
 		
 		JPanel panel1 = new JPanel();
 		JPanel panel2 = new JPanel(); 
@@ -24,6 +30,10 @@ public class MenuSelection extends JFrame{
 		JButton button5 = new JButton("Exit Program");
 		//각각의 기능을 하는 버튼들을 추가합니다.
 		
+		button1.addActionListener(new ButtonAddListener(frame));
+		//button1을 클릭시 ButtonAddListener가 동작하도록 추가합니다.
+		button4.addActionListener(new ButtonViewListener(frame));
+		//button4을 클릭시 ButtonViewListener가 동작하도록 추가합니다.
 		panel1.add(label);
 		panel2.add(button1);
 		panel2.add(button2);

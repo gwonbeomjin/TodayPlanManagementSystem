@@ -34,15 +34,13 @@ public class Assignment extends University{
 		} catch (TimeFormatException e) {
 
 			e.printStackTrace();
-		} //setDueYN의 예외처리를 위해 try catch문을 사용하였습니다.
+		}
 		setContents(input);
 		setProblemStr(input);
-		//입력받는 부분을 TodayPlan에서 구현하여 상속받거나 method로 하여 간략화 시켰습니다.
 	}
 	
 	public void printInfo() {
 		String skind = getKindStr();
 		System.out.println("Kind : " + skind + "/Num : " + plannum + "/Start Time : " + starttime + "/Finish Time : " + finishtime + "/Plan Name : " + planname + "/Contents : " + contents + "/문제 개수 : " + problem + "개");
 	}
-	//Assignment class에서는 추가적으로 문제 개수를 표시하기로 하였으므로 printInfo() method를 수정하여 method overriding하도록 하였습니다.
 }

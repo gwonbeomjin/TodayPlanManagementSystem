@@ -7,8 +7,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
-public class PlanAdder extends JFrame{
-	public PlanAdder() {
+public class PlanAdder extends JPanel{
+	
+	WindowFrame frame;
+	
+	public PlanAdder(WindowFrame frame) {
+		this.frame = frame;
+		
 		JPanel panel = new JPanel();
 		panel.setLayout(new SpringLayout());
 		
@@ -46,9 +51,9 @@ public class PlanAdder extends JFrame{
 		panel.add(new JButton("Cancel"));
 		
 		SpringUtilities.makeCompactGrid(panel, 6, 2, 6, 6, 6, 6);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		this.setSize(300, 300);
-		this.setContentPane(panel);
+		this.add(panel);
 		this.setVisible(true);
 	}
 }

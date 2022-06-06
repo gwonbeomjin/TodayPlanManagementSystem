@@ -12,6 +12,7 @@ import Plan.Exercise;
 import Plan.PlanInput;
 import Plan.PlanKind;
 import Plan.Study;
+import Plan.TodayPlan;
 
 public class PlanManager implements Serializable{
 
@@ -147,6 +148,14 @@ public class PlanManager implements Serializable{
 		for (int i = 0; i < todayplans.size(); i++) {
 			 todayplans.get(i).printInfo();
 		}
+	}
+	
+	public int size() {
+		return todayplans.size();
+	}
+	
+	public PlanInput get(int index) {
+		return (TodayPlan) todayplans.get(index);
 	}
 		
 	public void showEditMenu() {

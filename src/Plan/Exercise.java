@@ -24,8 +24,7 @@ public class Exercise extends TodayPlan{
 		setPlanNum(input);
 		setPlanName(input);
 		setStartTime(input);
-		setFinishTime(input);
-		//입력받는 부분을 부모클래스인 TodayPlan으로 옮겨 간략화 시켰습니다. 
+		setFinishTime(input); 
 		
 		char answer = 'x';
 		while (answer != 'y' && answer != 'Y' && answer != 'n' && answer != 'N') {
@@ -35,8 +34,6 @@ public class Exercise extends TodayPlan{
 				setContents(input);
 				break;
 			}
-			//exercise 클래스에서 contents부분을 세부적인 운동부분 유무를 물어보고
-			//있을 경우에 오늘의 운동부위를 입력 받도록 합니다.
 			else if (answer == 'n' || answer == 'N') {
 				this.setContents("");
 				break;
@@ -59,6 +56,5 @@ public class Exercise extends TodayPlan{
 		String skind = getKindStr();
 		System.out.println("Kind : " + skind + "/Num : " + plannum + "Today : " + date + "/Start Time : " + starttime + "/Finish Time : " + finishtime + "/Plan Name : " + planname + "/Contents : " + contents);
 	}
-	//Exercise 클래스에서 구현된 printInfo() method입니다.
 	
 }

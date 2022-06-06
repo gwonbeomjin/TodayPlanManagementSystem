@@ -9,11 +9,19 @@ public interface PlanInput {
 	
 	public void setPlannum(int plannum);
 	
+	public String getPlanname();
+	
 	public void setPlanname(String planname);
+	
+	public String getStarttime();
 	
 	public void setStarttime(String starttime) throws TimeFormatException;
 	
+	public String getFinishtime();
+	
 	public void setFinishtime(String finishtime) throws TimeFormatException;
+	
+	public String getContents();
 	
 	public void setContents(String contents);
 	
