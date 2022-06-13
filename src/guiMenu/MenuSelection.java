@@ -1,4 +1,4 @@
-package gui;
+package guiMenu;
 
 import java.awt.BorderLayout;
 
@@ -7,8 +7,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import listeners.ButtonAddListener;
-import listeners.ButtonViewListener;
+import AddListener.ButtonAddListener;
+import DeleteListener.ButtonDeleteListener;
+import EditListener.ButtonEditListener;
+import listeners.ButtonExitListener;
+import ViewListener.ButtonViewListener;
 
 public class MenuSelection extends JPanel{
 	
@@ -32,8 +35,14 @@ public class MenuSelection extends JPanel{
 		
 		button1.addActionListener(new ButtonAddListener(frame));
 		//button1을 클릭시 ButtonAddListener가 동작하도록 추가합니다.
+		button2.addActionListener(new ButtonDeleteListener(frame));
+		
+		button3.addActionListener(new ButtonEditListener(frame));
+		
 		button4.addActionListener(new ButtonViewListener(frame));
 		//button4을 클릭시 ButtonViewListener가 동작하도록 추가합니다.
+		button5.addActionListener(new ButtonExitListener(frame));
+		
 		panel1.add(label);
 		panel2.add(button1);
 		panel2.add(button2);

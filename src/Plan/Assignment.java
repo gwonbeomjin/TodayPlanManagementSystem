@@ -41,6 +41,6 @@ public class Assignment extends University{
 	
 	public void printInfo() {
 		String skind = getKindStr();
-		System.out.println("Kind : " + skind + "/Num : " + plannum + "/Start Time : " + starttime + "/Finish Time : " + finishtime + "/Plan Name : " + planname + "/Contents : " + contents + "/문제 개수 : " + problem + "개");
+		System.out.println("Kind : " + skind + "/Num : " + plannum + "/Plan Name : " + planname + "/Start Time : " + starttime + "/Finish Time : " + finishtime +  "/Contents : " + contents + "/문제 개수 : " + problem + "개");
 	}
 }

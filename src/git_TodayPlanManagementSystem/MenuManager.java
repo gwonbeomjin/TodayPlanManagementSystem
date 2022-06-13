@@ -11,7 +11,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.logging.Logger;
 import Log.EventLogger;
-import gui.WindowFrame;
+import guiMenu.WindowFrame;
 
 public class MenuManager implements Serializable{
 	/**
@@ -130,4 +130,5 @@ public class MenuManager implements Serializable{
 		}
 		
 	}
+
 }

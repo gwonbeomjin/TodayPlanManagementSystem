@@ -27,7 +27,7 @@ public class Study extends University{
 		setPlanName(input);
 		setStartTime(input);
 		setFinishTime(input);
-		 
+		
 		setPlaceYN(input);
 		setPage(input);
 	}

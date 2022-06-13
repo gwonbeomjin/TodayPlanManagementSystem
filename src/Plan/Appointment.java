@@ -33,7 +33,7 @@ public class Appointment extends TodayPlan{
 	}
 	public void printInfo() {
 		String skind = getKindStr();
-		System.out.println("Kind : " + skind + "/Num : " + plannum + "/Start Time : " + starttime + "/Finish Time : " + finishtime + "/Plan Name : " + planname + "/Contents : " + contents);
+		System.out.println("Kind : " + skind + "/Num : " + plannum + "/Plan Name : " + planname + "/Start Time : " + starttime + "/Finish Time : " + finishtime + "/Contents : " + contents);
 	}
 	
 }

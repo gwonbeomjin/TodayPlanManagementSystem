@@ -21,13 +21,23 @@ public class PlanManager implements Serializable{
 	
 	transient Scanner input;
 	
+	PlanInput planInput;
+	
 	PlanManager(Scanner input) {
 		this.input = input;
 	}
 	
+	public void setScanner(Scanner input) {
+		this.input = input;
+	}
+	
+	public void addPlan(PlanInput planInput) {
+		todayplans.add(planInput);
+	}
+	
 	public void addPlan() {
 		int kind = 0;
-		PlanInput planInput;
+		
 		while (kind != 1 && kind != 2 && kind != 3 && kind != 4) {
 			try { 
 			System.out.println("1. Study");
@@ -72,7 +82,6 @@ public class PlanManager implements Serializable{
 				kind = -1;
 			}
 		}
-		
 	}
 	
 	public void deletePlan() {
@@ -81,6 +90,14 @@ public class PlanManager implements Serializable{
 		int index = findIndex(planNum);
 		removePlan(index, planNum);
 	}
+	
+	public void deletePlan(PlanInput planInput) {
+		System.out.print("Plan Number : ");
+		int planNum = planInput.getPlannum();
+		int index = findIndex(planNum);
+		removePlan(index, planNum);
+	}
+	//삭제기능을 위해 planInput을 인자로하는 deletePlan.
 	
 	public int removePlan(int index, int planNum) {
 		if(index >= 0) {
@@ -103,7 +120,7 @@ public class PlanManager implements Serializable{
 			}
 		}
 		return index;
-	} 
+	}
 
 	public void editPlan() {
 		System.out.print("Plan Number : ");
@@ -143,6 +160,29 @@ public class PlanManager implements Serializable{
 		 
 		System.out.println("the Plan to be edited is " + PlanNum);
 	}
+	
+	public void editPlannum(PlanInput planinput, int num1) {
+		System.out.print("Plan Number : ");
+		num1 = planinput.getPlannum();
+		for (int i = 0; i < todayplans.size(); i++) {
+			planinput = todayplans.get(i);
+			if (planinput.getPlannum() == num1) {
+				planinput.setPlannum(num1);
+			}//if
+		}//for
+		 
+		System.out.println("the Plan to be edited is " + num1);
+	}
+	
+	public void editPlannum2(PlanInput planinput, int editnum) {
+		System.out.print("Plan Number : ");
+		planinput.setPlannum(editnum);
+
+		 
+		System.out.println("the Plan to be edited is " + editnum);
+	}
+	
+	
 
 	public void viewPlans() {
 		for (int i = 0; i < todayplans.size(); i++) {

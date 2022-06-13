@@ -14,7 +14,7 @@ public abstract class University extends TodayPlan {
 	
 	public void printInfo() {
 		String skind = getKindStr();
-		System.out.println("Kind : " + skind + "/Num : " + plannum + "/Start Time : " + starttime + "/Finish Time : " + finishtime + "/Plan Name : " + planname + "/장소 : " + contents);
+		System.out.println("Kind : " + skind + "/Num : " + plannum + "/Plan Name : " + planname + "/Start Time : " + starttime + "/Finish Time : " + finishtime + "/장소 : " + contents);
 	}
 	
 	public void setDueYN(Scanner input) throws TimeFormatException { //기존의 y/n을 입력받던 실행문을 method화 시켰습니다.
